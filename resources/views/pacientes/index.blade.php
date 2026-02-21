@@ -27,6 +27,15 @@
             <td>{{ $paciente->dni }}</td>
             <td>{{ $paciente->fecha_nacimiento }}</td>
             <td>{{ $paciente->medico->nombre }}</td>
+            <td>
+                <form action="{{ route('medicos.destroy', $paciente->medico->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro? Se borrarán todos los pacientes de este médico')">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" style="color: red; border: none; background: none; cursor: pointer;">
+                        Eliminar
+                    </button>
+                </form>
+            </td>
         </tr>
         @endforeach
     </tbody>

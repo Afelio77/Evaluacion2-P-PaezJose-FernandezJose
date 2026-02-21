@@ -64,8 +64,10 @@ class MedicoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Medico $medico)
+    public function destroy($id)
     {
-        //
+        $medico = Medico::findOrFail($id);
+        $medico->delete(); 
+        return redirect()->back()->with('status', 'Médico y sus pacientes eliminados.');
     }
 }
